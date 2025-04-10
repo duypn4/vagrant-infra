@@ -1,0 +1,23 @@
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "ubuntu/trusty64"
+  config.vm.provider "virtualbox" do |vm|
+    vm.memory = "2048"
+    vm.cpus = 2
+  end
+  config.vbguest.auto_update = false
+
+  config.vm.provision "shell", path: "../common/debian.sh"
+  config.vm.provision "shell", path: "scripts/install-node.sh"
+
+  config.vm.define "master" do |master|
+    master.vm.hostname = "master"
+    master.vm.network "private_network", ip: "192.168.10.2"
+  end
+
+  config.vm.define "worker" do |worker|
+    worker.vm.hostname = "worker"
+    worker.vm.network "private_network", ip: "192.168.10.3"
+  end
+end
