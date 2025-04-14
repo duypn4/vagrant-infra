@@ -1,4 +1,4 @@
 #!/bin/bash
 
 apt-get update -y
-apt-get install -y vim netcat telnet
+apt-get install -y vim netcat telnet net-tools

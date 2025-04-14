@@ -14,7 +14,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "master" do |master|
     master.vm.hostname = "master"
     master.vm.network "private_network", ip: "192.168.10.2"
-    master.vm.provision = "shell", path: "scripts/install-master.sh"
+    master.vm.provision "shell", path: "scripts/install-master.sh"
   end
 
   config.vm.define "worker" do |worker|
